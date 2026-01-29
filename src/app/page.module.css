@@ -1,141 +1,349 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
   min-height: 100vh;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  overflow: hidden;
 }
 
-.main {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.heroTitle {
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-sm);
+  animation: pulse 3s ease-in-out infinite;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
+.heroTagline {
+  font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.heroDescription {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.8;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.heroCtas {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
+  gap: var(--spacing-md);
   justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+  flex-wrap: wrap;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 30% 40%, var(--color-primary) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, var(--color-secondary) 0%, transparent 50%);
+  opacity: 0.2;
+  filter: blur(80px);
+  z-index: 1;
+  animation: float 15s ease-in-out infinite;
+}
+
+/* Artists Section */
+.artists {
+  background: var(--color-bg-dark);
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.sectionSubtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.artistGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.artistCard {
   cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  transition: all var(--transition-smooth);
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.artistCard:hover {
+  transform: translateY(-10px) scale(1.02);
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.artistImage {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.artistOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.artistCard:hover .artistOverlay {
+  opacity: 1;
+}
+
+.playIcon {
+  font-size: 3rem;
+  color: white;
+  transform: scale(0.8);
+  transition: var(--transition-elastic);
+}
+
+.artistCard:hover .playIcon {
+  transform: scale(1);
+}
+
+.artistInfo h3 {
+  margin-bottom: var(--spacing-xs);
+  font-size: 1.5rem;
+}
+
+.artistInfo p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Releases Section */
+.releases {
+  background: var(--color-bg-darker);
+}
+
+.releaseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.releaseCard {
+  padding: 0;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.releaseCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg), var(--glow-primary);
+}
+
+.releaseArtwork {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.releaseGradient {
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-accent);
+  transition: var(--transition-smooth);
+}
+
+.releaseCard:hover .releaseGradient {
+  transform: scale(1.1);
+}
+
+.releaseInfo {
+  padding: var(--spacing-lg);
+}
+
+.releaseInfo h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.releaseArtist {
+  color: var(--color-primary-light);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.releaseDate {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* About Section */
+.about {
+  background: var(--color-bg-dark);
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xl);
+  align-items: center;
+}
+
+.aboutText h2 {
+  margin-bottom: var(--spacing-md);
+}
+
+.aboutText p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.aboutVisual {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutGlow {
+  width: 80%;
+  height: 80%;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* Footer */
+.footer {
+  background: var(--color-bg-darker);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-3xl) 0 var(--spacing-lg);
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--spacing-3xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.footerBrand h3 {
+  margin-bottom: var(--spacing-xs);
+  font-size: 2rem;
+}
+
+.footerBrand p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.footerLinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.footerColumn h4 {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+}
+
+.footerColumn ul {
+  list-style: none;
+}
+
+.footerColumn li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footerColumn a {
+  color: var(--color-text-secondary);
+  transition: var(--transition-smooth);
+}
+
+.footerColumn a:hover {
+  color: var(--color-primary);
+  padding-left: 5px;
+}
+
+.footerBottom {
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.footerBottom p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .aboutContent {
+    grid-template-columns: 1fr;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .aboutVisual {
+    height: 300px;
+  }
+
+  .footerContent {
+    grid-template-columns: 1fr;
+  }
+
+  .footerLinks {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+@media (max-width: 640px) {
+  .heroCtas {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .intro {
-    gap: 16px;
+  .heroCtas .btn {
+    width: 100%;
+    max-width: 300px;
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .artistGrid {
+    grid-template-columns: 1fr;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .releaseGrid {
+    grid-template-columns: 1fr;
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .footerLinks {
+    grid-template-columns: 1fr;
   }
 }
