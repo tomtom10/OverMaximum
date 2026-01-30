@@ -146,6 +146,11 @@
   background: var(--color-bg-darker);
 }
 
+.featuredTrack {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-3xl);
+}
+
 .releaseGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

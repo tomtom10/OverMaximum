@@ -1,3 +1,4 @@
+import AudioPlayer from "./components/AudioPlayer";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -62,6 +63,16 @@ export default function Home() {
           <p className={styles.sectionSubtitle}>
             Fresh tracks from our roster
           </p>
+
+          {/* Featured Track with Audio Player */}
+          <div className={styles.featuredTrack}>
+            <AudioPlayer
+              src="/what-does-it-matter-now.mp3"
+              title="What Does It Matter Now"
+              artist="Over Maximum"
+            />
+          </div>
+
           <div className={styles.releaseGrid}>
             {[
               { title: "Quantum Dreams", artist: "Echo Pulse", date: "2026" },
